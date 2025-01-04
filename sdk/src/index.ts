@@ -1,4 +1,4 @@
-import FeatureFlags from "./client";
-import { getFeatureFlags } from "./next";
+import PostworkClient from "./client";
+import { initPostwork, getFeatureFlags } from "./next";
 
-export { FeatureFlags, getFeatureFlags };
+export { PostworkClient, initPostwork, getFeatureFlags };
