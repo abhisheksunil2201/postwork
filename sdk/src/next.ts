@@ -15,8 +15,8 @@ export async function getFeatureFlags(
   userProperties: Record<string, any> = {},
   apiUrl: string
 ): Promise<PostworkClient["flags"]> {
-  const posthog = initPostwork(apiKey, apiUrl);
-  posthog.identify(userId, userProperties);
-  await posthog.fetchFeatureFlags();
-  return posthog.getFeatureFlags();
+  const postwork = initPostwork(apiKey, apiUrl);
+  postwork.identify(userId, userProperties);
+  await postwork.fetchFeatureFlags();
+  return postwork.getFeatureFlags();
 }
