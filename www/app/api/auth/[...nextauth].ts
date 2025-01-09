@@ -17,10 +17,16 @@ export default NextAuth({
     async redirect({ url, baseUrl }) {
       return url.startsWith(baseUrl) ? url : baseUrl;
     },
-    async session({ session }) {
+    async session({ session, token }) {
+      // Add the access token to the session
+      session.accessToken = token.accessToken as string;
       return session;
     },
-    async jwt({ token }) {
+    async jwt({ token, account }) {
+      // Add the access token to the JWT
+      if (account?.access_token) {
+        token.accessToken = account.access_token;
+      }
       return token;
     },
   },

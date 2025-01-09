@@ -16,16 +16,20 @@ func (s *Server) RegisterRoutes() http.Handler {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/", s.HelloWorldHandler)
+	e.GET("/", s.HelloHandler)
 
 	e.GET("/health", s.healthHandler)
+
+	// Auth0 OAuth Routes
+	e.GET("/auth/login", s.authLoginHandler)
+	e.GET("/auth/callback", s.authCallbackHandler)
 
 	return e
 }
 
-func (s *Server) HelloWorldHandler(c echo.Context) error {
+func (s *Server) HelloHandler(c echo.Context) error {
 	resp := map[string]string{
-		"message": "Hello World",
+		"message": "Hello from Postwork!",
 	}
 
 	return c.JSON(http.StatusOK, resp)
